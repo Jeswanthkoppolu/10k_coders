@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buspass</title>
+</head>
+<body>
+    <form>
+        <h2 style="color: blue; text-align: center; ">TELANGANA STATE ROAD TRANSPORT COORPTION</h2>        
+        <h1 style="color: green; text-align: center;">STUDENT BUS PASS APPLICATION ABOVE SSC</h1>
+        
+    <fieldset>
+        <legend><b>1. Student Details</b></legend>
+        <div>
+        <label for="full name"><b>1.1 Full Name:</b></label> 
+        <input type="text" id="full name" name="full name" placeholder="Full Name" >
+        </div><br>
+        <div>
+        <label for="father name"><b>1.2 Father/ga Name:</b></label> 
+        <input type="text" id="full name" name="full name" placeholder="Full Name" >
+        </div><br>
+
+        <div>
+        <label for="dob"><b>1.3 Date of Birth:</b></label>
+        <input type="date" id="dob" name="dob" placeholder="date of birth">
+        </div><br>
+
+        <div>
+        <label for="gender"><b>1.4 gender:</b></label>
+        <input type="radio" id="gender" name="gender" placeholder="male">male
+        <input type="radio" id="gender" name="gender" placeholder="female">female
+        <input type="radio" id="gender" name="gender" placeholder="others">others
+        </div><br>
+
+        <div>
+        <label for="aadhar no"><b>1.5 Aadhar No:</b></label>
+        <input type="numbers" id="aadhar no" name="aadhar no" placeholder="Adhar Number"  maxlength="12" required>
+        </div><br>
+
+        <div>
+        <label for="phonenumber"><b>1.6 phone number:</b></label>
+        <input type="tel" id="phonenumber" name="phone number" value="+91" placeholder="Phone Number"  maxlength="13" required>
+        </div><br>
+
+        <div>
+        <label for="employee"><b>1.7 is Employee Childern:</b></label>
+        <input type="radio" id="employee" name="employee" placeholder="Yes">Yes
+        <input type="radio" id="employeer" name="employee" placeholder="No">No
+        </div><br>
+
+        <div>
+        <label for="email"><b>1.8 Email:</b></label>
+        <input type="email" id="email" name="email" placeholder="email" maxlength="50" required>
+        </div><br>
+
+        <div>
+        <label for="file"><b>1.9 photo:</b></label>
+        <input type="file" name="file" id="file" placeholder="photo">
+        </div><br>     
+        
+    </fieldset>
+
+    <fieldset>
+        <legend><b>2.Residential Address Details</b></legend>
+
+        <div>
+        <label for="District"><b>2.1 District</b></label>
+        <select name="District" id="District" placeholder="District">
+        <option >select </option>
+        <option value="Nizamabad" >Nizamabad</option>
+        <option value="Kamareddy" >Kamareddy</option>
+        <option value="Karimnagar" >Karimnagar</option>
+        <option value="Mahabubabad" >Mahabubabad</option>
+        <option value="Peddapalli" >Peddapalli</option>
+        </select>
+        </div><br>
+
+        <div>
+        <label for="mandal"><b>2.2 Mandal:</b></label> 
+        <input type="text" id="mandal" name="mandale" placeholder="mandal" >
+        </div><br>
+
+        <div>
+        <label for="village"><b>2.3 Village:</b></label> 
+        <input type="text" id="villag" name="villag" placeholder="villag" >
+        </div><br>
+
+        <div>
+        <label for="address"><b>2.4 Address:</b></label>
+        <textarea type="text" id="address" name="address" placeholder="address"  maxlength="150" required></textarea>
+        </div><br>
+
+        <div>
+        <label for="pincode"><b>2.5 Pin Code:</b></label>
+        <input type="number" id="pincode" name="pincode"  placeholder="pincode"  maxlength="6" required>
+        </div><br>
+        
+    </fieldset>
+
+    <fieldset>
+        <legend><b>3.School Details</b></legend>
+        <div>
+        <label for="District"><b>3.1 District</b></label>
+        <select name="District" id="District" placeholder="District">
+        <option >select</option>
+        <option value="Nizamabad" >Nizamabad</option>
+        <option value="Kamareddy" >Kamareddy</option>
+        <option value="Karimnagar" >Karimnagar</option>
+        <option value="Mahabubabad" >Mahabubabad</option>
+        <option value="Peddapalli" >Peddapalli</option>
+        </select>
+        </div><br>  
+
+        <div>
+        <label for="mandal"><b>3.2 Mandal:</b></label> 
+        <input type="text" id="mandal" name="mandale" placeholder="mandal" >
+        </div><br>
+
+        <div>
+        <label for="School name"><b>3.3 School Name:</b></label> 
+        <input type="text" id="School name" name="School name" placeholder="School name" >
+        </div><br>
+
+        <div>
+        <label for="class"><b>3.4 Class</b></label>
+        <select name="class" id="class" value="class">
+        <option >select</option>
+        <option value="10th" >10th</option>
+        <option value="9th" >9th</option>
+        <option value="8th" >8th</option>
+        <option value="7th" >7th</option>
+        <option value="6th" >6th</option>
+        </select>
+        </div><br>
+
+        <div>
+        <label for="admission no"><b>3.5 Admission No:</b></label>
+        <input type="numbers" id="admission no" name="admission no" placeholder="Admission No"  maxlength="10" required>
+        </div><br>
+
+        <div>
+        <label for="School address"><b>3.6 School Address:</b></label> 
+        <input type="text" id="School address" name="School address" placeholder="School address" maxlength="100">
+        </div><br>
+
+    </fieldset>
+
+    <fieldset>
+        <legend><b>4.Route Details</b></legend>
+        <div>
+        <label for="collect"><b>4.1 Collect</b></label>
+        <select name="collect" id="collect" placeholder="collect">
+        <option >select</option>
+        <option value="KBHP" >KBHP</option>
+        <option value="Uppal & Uppal X Roads" >Uppal & Uppal X Roads</option>
+        <option value="SR Nagar (Ameerpet)" >SR Nagar (Ameerpet)</option>
+        <option value="Risala Bazar (Secunderabad)" >Risala Bazar (Secunderabad)</option>
+        <option value="Women’s College – Koti" >Women’s College – Koti</option>
+        </select>
+        </div><br>
+
+        <div>
+        <label for="pass type"><b>4.2 Pass Type </b></label>
+        <select name="pass type" id="pass type" placeholder="pass type">
+        <option>select</option>
+        <option value="Student Passes" >Student Passes</option>
+        <option value="Special Concessional Passes" >Special Concessional Passes</option>
+        </select>
+        </div><br>
+        
+    </fieldset>
+
+    <fieldset>
+        <legend><b>5.Mode of Payment & Pass Collection*</b></legend>
+        <div>
+        <label for="mode"><b>Select Payment Mode:</b></label>
+        <select name="mode" id="mode" placeholder="mode">
+        <option  >select</option>
+        <option value="payment at counter" >payment at counter<option>
+        <option value="online" >online</option>
+        </select>
+        </div><br>
+
+        <div>
+        <label for="mode"><b>Select Pass Delivery Mode:</b></label>
+        <select name="mode" id="mode" placeholder="mode">
+        <option  >select</option>
+        <option value="online" >online</option>
+        <option value="at counter" >at counter</option>
+        </select>
+        </div><br>
+    </fieldset>
+    <div style="text-align: center;" >
+    <button type="submit"><b>submit</b></button>
+    </div>
+</form>    
+</body>
+</html>
