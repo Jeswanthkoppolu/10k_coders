@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./result.html" >
+    <div>
+    <label for="first name"><b>first name:</b></label> 
+    <input type="text" id="first name" name="name" placeholder="first name" >
+    <label for="last name"><b>last name:</b></label> 
+    <input type="text" id="last name" name="name" placeholder="last name" > 
+    </div><br>
+
+    <div>
+    <label for="addmission number"><b>addmission number:</b></label>
+    <input type="numbers" id="addmission number" name="name" placeholder="enter your addmission number" required>
+    </div><br>
+
+    <div>
+    <label for="dob"><b>date of birth:</b></label>
+    <input type="date" id="dob" name="dob" placeholder="date of birth">
+    </div><br>
+
+    <div>
+    <label for="age"><b>age:</b></label>
+    <input type="number" id="age" name="age" minlength="1" maxlength="150" required><br>
+    </div><br>
+
+    <div>
+    <label for="gender"><b>gender:</b></label>
+    <input type="radio" id="gender" name="gender" placeholder="male">male
+    <input type="radio" id="gender" name="gender" placeholder="female">female
+    <input type="radio" id="gender" name="gender" placeholder="others">others
+    </div><br>
+
+    <div>
+    <label for="email"><b>email:</b></label>
+    <input type="email" id="email" name="email" placeholder="email" maxlength="50" required>
+    </div><br>
+
+    <div>
+    <label for="phonenumber"><b>phone number:</b></label>
+    <input type="tel" id="phonenumber" name="phone number" value="+91"  maxlength="13" required>
+    </div><br>
+
+    <div>
+    <label for="address"><b>address:</b></label>
+    <textarea type="text" id="address" name="address" placeholder="address"  maxlength="100" required></textarea>
+    </div><br>
+    
+    <div>
+    <label for="education"><b>education</b></label>
+    <select name="education" id="education">
+    <option value="B.tech" >B.tech</option>
+    <option value="Degree" >Degree</option>
+    </select>
+    </div><br>
+   
+    <div>
+     <label for="hobbies"><b>hobbies:</b></label>
+    <input type="checkbox" name="hobbies">playing
+    <input type="checkbox" name="hobbies">movies
+    <input type="checkbox" name="hobbies">reading
+    <input type="checkbox" name="hobbies">progarming
+    </div><br>
+
+    <div>
+    <label for="file"><b>photo:</b></label>
+    <input type="file" name="file" id="file" placeholder="photo">
+    </div><br>
+    <button type="reset"><b>reset</b></button>
+    <button type="submit"><b>submit</b></button>
+
+
+    </form>
+</body>
+</html>
