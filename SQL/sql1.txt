@@ -1,0 +1,96 @@
+MySQL  localhost:33060+ ssl  bobby  SQL > create table students(
+                                        -> id int primary key auto_increment,
+                                        -> name varchar(50) not null,
+                                        -> email varchar(50) unique,
+                                        -> age int check (age>=18),
+                                        -> city varchar(50) default 'hyderabad');
+Query OK, 0 rows affected (0.0619 sec)
+MySQL  localhost:33060+ ssl  bobby  SQL > desc students;
++-------+-------------+------+-----+-----------+----------------+
+| Field | Type        | Null | Key | Default   | Extra          |
++-------+-------------+------+-----+-----------+----------------+
+| id    | int         | NO   | PRI | NULL      | auto_increment |
+| name  | varchar(50) | NO   |     | NULL      |                |
+| email | varchar(50) | YES  | UNI | NULL      |                |
+| age   | int         | YES  |     | NULL      |                |
+| city  | varchar(50) | YES  |     | hyderabad |                |
++-------+-------------+------+-----+-----------+----------------+
+5 rows in set (0.0041 sec)
+MySQL  localhost:33060+ ssl  bobby  SQL > INSERT INTO students (name, email, age)
+                                        -> VALUES
+                                        ->     ("jeswanth", "jes@gmail.com", 22),
+                                        ->     ("bhargav", "bhar@gmail.com", 21),
+                                        ->     ("murari", "mur@gmail.com", 21),
+                                        ->     ("sai", "sai@gmail.com", 22),
+                                        ->     ("surya", "sur@gmail.com", 22);
+Query OK, 5 rows affected (0.0153 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+MySQL  localhost:33060+ ssl  bobby  SQL > select * from students;
++----+----------+----------------+-----+-----------+
+| id | name     | email          | age | city      |
++----+----------+----------------+-----+-----------+
+|  1 | jeswanth | jes@gmail.com  |  22 | hyderabad |
+|  2 | bhargav  | bhar@gmail.com |  21 | hyderabad |
+|  3 | murari   | mur@gmail.com  |  21 | hyderabad |
+|  4 | sai      | sai@gmail.com  |  22 | hyderabad |
+|  5 | surya    | sur@gmail.com  |  22 | hyderabad |
++----+----------+----------------+-----+-----------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  bobby  SQL > alter table students add phone bigint unique;
+Query OK, 0 rows affected (0.1202 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > alter table students modify age smallint;
+Query OK, 5 rows affected (0.1207 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > alter table students
+                                        -> drop column city;
+Query OK, 0 rows affected (0.0281 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:33060+ ssl  bobby  SQL > select * from students;
++----+----------+----------------+-----+-------+
+| id | name     | email          | age | phone |
++----+----------+----------------+-----+-------+
+|  1 | jeswanth | jes@gmail.com  |  22 |  NULL |
+|  2 | bhargav  | bhar@gmail.com |  21 |  NULL |
+|  3 | murari   | mur@gmail.com  |  21 |  NULL |
+|  4 | sai      | sai@gmail.com  |  22 |  NULL |
+|  5 | surya    | sur@gmail.com  |  22 |  NULL |
++----+----------+----------------+-----+-------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:33060+ ssl  bobby  SQL > update students set phone=8688989342 where id = 1;
+Query OK, 1 row affected (0.0129 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > update students set phone=9688989342 where id = 2;
+Query OK, 1 row affected (0.0138 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > update students set phone=9688989542 where id = 3;
+Query OK, 1 row affected (0.0133 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > update students set phone=9688989532 where id = 4;
+Query OK, 1 row affected (0.0135 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > update students set phone=9688989522 where id = 5;
+Query OK, 1 row affected (0.0050 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:33060+ ssl  bobby  SQL > select * from students;
++----+----------+----------------+-----+------------+
+| id | name     | email          | age | phone      |
++----+----------+----------------+-----+------------+
+|  1 | jeswanth | jes@gmail.com  |  22 | 8688989342 |
+|  2 | bhargav  | bhar@gmail.com |  21 | 9688989342 |
+|  3 | murari   | mur@gmail.com  |  21 | 9688989542 |
+|  4 | sai      | sai@gmail.com  |  22 | 9688989532 |
+|  5 | surya    | sur@gmail.com  |  22 | 9688989522 |
++----+----------+----------------+-----+------------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:33060+ ssl  bobby  SQL > insert into students(name, email, age,phone) values('ram','jes@gmail.com',17,8688989356);
+ERROR: 3819: Check constraint 'students_chk_1' is violated.
