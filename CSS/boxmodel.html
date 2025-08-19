@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    h1{
+        text-align: center;
+    }
+     
+    .first,.second{
+        display: flex;
+        margin-left:6%;
+        margin-right:6%;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+    .img1,.img2{
+            box-sizing: border-box;
+            display:inline-block;
+            height: 25%;
+            width:25%;
+            padding: 10px;
+            text-align: center;
+            
+    }
+    img{
+        height: 100%;
+        width: 100%;
+    }
+    .num{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+        height: 20%;
+    }
+    .num>p{
+        padding: 5%;
+    }
+    h2,h4{
+        text-align: center;
+    }
+    .middle{
+        width: 80%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+       place-content: center;
+       justify-content: space-around;
+    }
+    .middle>img{
+     height: 75%;
+     width: 75%;
+    }
+
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      margin: 5%;
+    }
+
+    .footer-column {
+      width: 30%;
+    }
+
+   
+    .blog-post {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .blog-post img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+   
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: #555;
+      color: white;
+      padding: 5px 10px;
+      font-size: 14px;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+
+    .tag.active {
+      background: black;
+    }
+
+</style>
+</head>
+<body>
+    <h1>My Food</h1>
+
+    <div class="first">
+
+        <div class="img1">
+    <img src="https://www.w3schools.com/w3images/sandwich.jpg">
+    <h2>The Perfect Sandwich, A Real NYC Classic</h2>
+    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+
+        <div class="img1">
+    <img src="https://www.w3schools.com/w3images/steak.jpg">
+    <h2>Let Me Tell You About This Steak</h2>
+    <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+
+        <div class="img1">
+    <img src="https://www.w3schools.com/w3images/cherries.jpg">
+    <h2>Cherries, interrupted</h2>
+    <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+    <p>What else?</p>
+        </div>
+        
+        <div class="img1">
+    <img src="https://www.w3schools.com/w3images/wine.jpg">
+    <h2>Once Again, Robust Wine and Vegetable Pasta</h2>
+    <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+    </div>
+
+    <div class="second">
+        
+    <div class="img2">
+    <img src="https://www.w3schools.com/w3images/popsicle.jpg">
+    <h2>All I Need Is a Popsicle</h2>
+    <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+    </div>
+        
+    <div class="img2">
+    <img src="https://www.w3schools.com/w3images/salmon.jpg">
+    <h2>Salmon For Your Skin</h2>
+    <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+    </div>
+
+    <div class="img2">
+    <img src="https://www.w3schools.com/w3images/sandwich.jpg">
+    <h2>The Perfect Sandwich, A Real Classic</h2>
+    <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+    </div>
+
+    <div class="img2">
+    <img src="https://www.w3schools.com/w3images/croissant.jpg">
+    <h2>Le French</h2>
+    <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="num">
+        <p>&lt&lt</p>
+        <p style="background-color: black; color:white;">1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>&gt&gt</p>
+    </div>
+
+    <div class="middle">
+        <h2>About Me, The Food Man</h2>
+        <img style="margin-left: 125px;"  src="https://www.w3schools.com/w3images/chef.jpg">
+        <h2>I am Who I Am!</h2>
+        <p1><i>With Passion For Real, Good Food</i></p1>
+        <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. 
+        I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. 
+        Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+    </div>
+
+     <div class="footer">
+    <div class="footer-column">
+      <p style="margin-right: 50%; font-size: larger;">FOOTER</p>
+      <p>
+        Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, 
+        porta lectus vitae, ultricies congue gravida diam non fringilla.
+      </p>
+      <p>Powered by <a href="#">w3.css</a></p>
+    </div>
+
+    <div class="footer-column">
+      <p style="margin-right: 50%; font-size: larger;">BLOG POSTS</p>
+      <div class="blog-post">
+        <img src="https://www.w3schools.com/w3images/workshop.jpg" alt="Blog 1">
+        <div>
+          <strong>Lorem</strong><br>
+          <span>Sed mattis nunc</span>
+        </div>
+      </div><hr>
+
+      <div class="blog-post">
+        <img src="https://www.w3schools.com/w3images/gondol.jpg" alt="Blog 2">
+        <div>
+          <strong>Ipsum</strong><br>
+          <span>Praes tinci sed</span>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="footer-column">
+      <p style="margin-right: 50%; font-size: larger;">POPULAR TAGS</p>
+      <div class="tags">
+        <a  class="tag active">Travel</a>
+        <a  class="tag">New York</a>
+        <a  class="tag">Dinner</a>
+        <a  class="tag">Salmon</a>
+        <a  class="tag">France</a>
+        <a  class="tag">Drinks</a>
+        <a  class="tag">Ideas</a>
+        <a  class="tag">Flavors</a>
+        <a  class="tag">Cuisine</a>
+        <a  class="tag">Chicken</a>
+        <a  class="tag">Dressing</a>
+        <a  class="tag">Fried</a>
+        <a  class="tag">Fish</a>
+        <a  class="tag">Duck</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
