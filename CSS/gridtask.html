@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid task</title>
+    <style>
+    .parent{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding: 10px;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient( rgba(69, 69, 234, 0.645), rgba(184, 25, 184, 0.853));
+    }
+
+    .tab1,.tab2,.tab3,.tab4,.tab5,.tab6,.tab7,.tab8,.tab9{
+        border: 5px solid gray ;
+        width: 25%;
+        height: 20vh;
+        display: grid;
+    }
+
+
+    .tab1{
+        grid-template-columns: repeat(3,1fr);
+        column-gap: 5px;
+        background-color: gray;
+    }
+    .tab1>.t1box1,.t1box2,.t1box3{
+        background-color: white;
+    }
+
+
+    .tab2{
+        grid-template-columns: repeat(4,1fr);
+         column-gap: 5px;
+         row-gap: 5px;
+        background-color: gray;
+    }
+    .tab2>.t2box1,.t2box2,.t2box3{
+        background-color: white;
+    }
+    .t2box1{
+        grid-row: 1/3;
+        grid-column: 1/3;
+    }
+    .t2box2{
+        grid-column: 3/5;
+    }
+    .t2box3{
+        grid-column: 3/5;
+        grid-row: 2;
+    }
+
+
+    .tab3{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab3>.t3box1,.t3box2,.t3box3,.t3box4,.t3box5,.t3box6{
+        background-color: white;
+    }
+    .t3box1{
+        grid-column: 1/3;
+    }
+    .t3box2{
+        grid-column: 3/5;
+    }
+     .t3box3{
+        grid-column: 5/7;
+    }
+     .t3box4{
+        grid-column: 1/3;
+    }
+    .t3box5{
+        grid-column: 3/5;
+    }
+    .t3box6{
+        grid-column: 5/7;
+    }
+
+
+    .tab4{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab4>.t4box1,.t4box2,.t4box3,.t4box4,.t4box5,.t4box6{
+        background-color: white;
+    }
+    .t4box1{
+        grid-column: 1/3;
+    }
+    .t4box2{
+        grid-column: 3/5;
+        grid-row: 1/3;
+    }
+    .t4box3{
+        grid-column: 5/7;
+    }
+    .t4box4{
+        grid-column: 1/3;
+        grid-row:2/4 ;
+    }
+    .t4box5{
+        grid-column: 5/7;
+        grid-row: 2/4;
+    }
+    .t4box6{
+        grid-column: 3/5;
+    }
+
+    .tab5{
+        grid-template-columns: repeat(5,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab5>.t5box1,.t5box2,.t5box3,.t5box4,.t5box5{
+        background-color: white;
+    }
+    .t5box1{
+        grid-column: 1/4;
+    }
+    .t5box2{
+        grid-column: 4/7;
+    }
+    .t5box3{
+        grid-column: 1/3;
+    }
+    .t5box4{
+        grid-column: 3/5;
+    }
+    .t5box5{
+        grid-column: 5/7;
+    }
+
+
+    .tab6{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab6>.t6box1,.t6box2,.t6box3,.t6box4,.t6box5,.t6box6{
+        background-color: white;
+    }
+    .t6box1{
+        grid-column: 1/5;
+        grid-row: 1/4;
+    }
+    .t6box2{
+        grid-column: 5/7;
+    }
+    .t6box3{
+        grid-column: 5/7;
+        grid-row: 2/4;
+    }
+    .t6box4{
+        grid-column: 1/3;
+    }
+    .t6box5{
+        grid-column: 3/5;
+    }
+    .t6box6{
+        grid-column: 5/7;
+    }
+
+
+    .tab7{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab7>.t7box1,.t7box2,.t7box3,.t7box4,.t7box5{
+        background-color: white;
+    }
+    .t7box1{
+        grid-column: 1/3;
+        grid-row: 1/4;
+    }
+    .t7box2{
+        grid-row: 1/2;
+        grid-column: 3/7;
+    }
+    .t7box3{
+        grid-column: 3/5;
+    }
+    .t7box4{
+        grid-column: 5/7;
+        grid-row: 2/4;
+    }
+    .t7box5{
+        grid-column: 3/5;
+    }
+
+
+    .tab8{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab8>.t8box1,.t8box2,.t8box3,.t8box4,.t8box5,.t8box6,.t8box7{
+        background-color: white;
+    }
+    .t8box1{
+        grid-column: 1/4;
+        grid-row: 1/6;
+    }
+    .t8box2{
+        grid-column: 4/8;
+        grid-row: 1/4;
+    }
+    .t8box3{
+        grid-column: 8/13;
+        grid-row: 1/3;
+    }
+    .t8box4{
+        grid-column: 4/6;
+        grid-row: 4/6;
+    }
+    .t8box5{
+        grid-column: 6/8;
+        grid-row: 4/6;
+    }
+    .t8box6{
+        grid-column: 8/13;
+    }
+    .t8box7{
+        grid-column: 8/13;
+        grid-row: 4/6;
+     }  
+   
+
+    .tab9{
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: gray;
+    }
+    .tab9>.t9box1,.t9box2,.t9box3,.t9box4,.t9box5,.t9box6,.t9box7,.t9box8,.t9box9,.t9box10{
+        background-color: white;
+    }
+    .t9box1{
+        grid-column: 1/3;
+    }
+    .t9box2{
+        grid-column: 3/5;
+    }
+    .t9box3{
+        grid-column: 5/7;
+    }
+    .t9box4{
+        grid-column: 7/14;
+    }
+    .t9box5{
+        grid-column: 1/5;
+    
+    }
+    .t9box6{
+        grid-column: 5/14;
+    }
+    .t9box7{
+        grid-column: 1/3;
+    }
+    .t9box8{
+        grid-column: 3/5;
+    }
+    .t9box9{
+        grid-column: 5/7;
+    }
+    .t9box10{
+        grid-column: 7/14;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="tab1">
+            <div class="t1box1"></div>
+            <div class="t1box2"></div>
+            <div class="t1box3"></div>
+        </div>
+
+        <div class="tab2">
+            <div class="t2box1"></div>
+            <div class="t2box2"></div>
+            <div class="t2box3"></div>
+        </div>
+
+        <div class="tab3">
+            <div class="t3box1"></div>
+            <div class="t3box2"></div>
+            <div class="t3box3"></div>
+            <div class="t3box4"></div>
+            <div class="t3box5"></div>
+            <div class="t3box6"></div>
+        </div>
+
+        <div class="tab4">
+            <div class="t4box1"></div>
+            <div class="t4box2"></div>
+            <div class="t4box3"></div>
+            <div class="t4box4"></div>
+            <div class="t4box5"></div>
+            <div class="t4box6"></div>
+        </div>
+
+        <div class="tab5">
+            <div class="t5box1"></div>
+            <div class="t5box2"></div>
+            <div class="t5box3"></div>
+            <div class="t5box4"></div>
+            <div class="t5box5"></div>
+        </div>
+
+        <div class="tab6">
+            <div class="t6box1"></div>
+            <div class="t6box2"></div>
+            <div class="t6box3"></div>
+            <div class="t6box4"></div>
+            <div class="t6box5"></div>
+            <div class="t6box6"></div>
+        </div>
+
+        <div class="tab7">
+            <div class="t7box1"></div>
+            <div class="t7box2"></div>
+            <div class="t7box3"></div>
+            <div class="t7box4"></div>
+            <div class="t7box5"></div>
+        </div>
+
+        <div class="tab8">
+            <div class="t8box1"></div>
+            <div class="t8box2"></div>
+            <div class="t8box3"></div>
+            <div class="t8box4"></div>
+            <div class="t8box5"></div>
+            <div class="t8box6"></div>
+            <div class="t8box7"></div>
+        </div>
+
+        <div class="tab9">
+            <div class="t9box1"></div>
+            <div class="t9box2"></div>
+            <div class="t9box3"></div>
+            <div class="t9box4"></div>
+            <div class="t9box5"></div>
+            <div class="t9box6"></div>
+            <div class="t9box7"></div>
+            <div class="t9box8"></div>
+            <div class="t9box9"></div>
+            <div class="t9box10"></div>
+        </div>
+        
+    </div>
+</body>
+</html>
