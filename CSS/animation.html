@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:skyblue;
+          }
+
+      .sun{
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        margin-left: 45%;
+        position: fixed;
+        background-color: orangered ;
+        }
+
+      .shadow{
+        width: 290px;
+        height: 290px;
+        border-radius: 50%;
+        margin-left: 45%;
+        position: relative;
+        background-color:black ;
+        animation-name: example;
+        animation-delay: 3s;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: linear;
+        }
+
+      @keyframes example {
+        0%{background-color:black; transform:translateX(0); }
+        25%{background-color:black; transform:translateX(30px); }
+        50%{background-color:black; transform:translateX(0px); }
+        75%{background-color:black; transform:translateX(30px); }
+        100%{background-color:black; transform:translateX(0px); }
+
+        }
+
+    </style>
+</head>
+<body>
+  <div>
+    <div class="sun"></div>
+    <div class="shadow"></div>
+</div>
+</body>
+</html>
