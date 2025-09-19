@@ -1,0 +1,550 @@
+ MySQL  localhost:33060+ ssl  bobby  SQL > show tables;
++-----------------+
+| Tables_in_bobby |
++-----------------+
+| department      |
+| emp             |
+| employees       |
+| students        |
++-----------------+
+4 rows in set (0.0027 sec)
+ MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp;
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+13 rows in set (0.0350 sec)
+
+1) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,salary, salary + 500 as increased_salary from emp;
++--------+---------+------------------+
+| ename  | salary  | increased_salary |
++--------+---------+------------------+
+| SMITH  | 1300.00 |          1800.00 |
+| ALLEN  | 2100.00 |          2600.00 |
+| WARD   | 1750.00 |          2250.00 |
+| JONES  | 3475.00 |          3975.00 |
+| BLAKE  | 3350.00 |          3850.00 |
+| CLARK  | 2950.00 |          3450.00 |
+| SCOTT  | 3500.00 |          4000.00 |
+| KING   | 5500.00 |          6000.00 |
+| TURNER | 2000.00 |          2500.00 |
+| ADAMS  | 1600.00 |          2100.00 |
+| JAMES  | 1450.00 |          1950.00 |
+| FORD   | 3500.00 |          4000.00 |
+| MILLER | 1800.00 |          2300.00 |
++--------+---------+------------------+
+13 rows in set (0.0013 sec)
+
+2) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,salary, salary * 2 as double_salary from emp;
++--------+---------+---------------+
+| ename  | salary  | double_salary |
++--------+---------+---------------+
+| SMITH  | 1300.00 |       2600.00 |
+| ALLEN  | 2100.00 |       4200.00 |
+| WARD   | 1750.00 |       3500.00 |
+| JONES  | 3475.00 |       6950.00 |
+| BLAKE  | 3350.00 |       6700.00 |
+| CLARK  | 2950.00 |       5900.00 |
+| SCOTT  | 3500.00 |       7000.00 |
+| KING   | 5500.00 |      11000.00 |
+| TURNER | 2000.00 |       4000.00 |
+| ADAMS  | 1600.00 |       3200.00 |
+| JAMES  | 1450.00 |       2900.00 |
+| FORD   | 3500.00 |       7000.00 |
+| MILLER | 1800.00 |       3600.00 |
++--------+---------+---------------+
+13 rows in set (0.0010 sec)
+
+3) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,salary,commission from emp where commission > 0.10 * salary;
++-------+---------+------------+
+| ename | salary  | commission |
++-------+---------+------------+
+| ALLEN | 2100.00 |     300.00 |
+| WARD  | 1750.00 |     500.00 |
++-------+---------+------------+
+2 rows in set (0.0010 sec)
+
+4) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,salary,salary*12 as annual_salary from emp where salary*12 >30000;
++-------+---------+---------------+
+| ename | salary  | annual_salary |
++-------+---------+---------------+
+| JONES | 3475.00 |      41700.00 |
+| BLAKE | 3350.00 |      40200.00 |
+| CLARK | 2950.00 |      35400.00 |
+| SCOTT | 3500.00 |      42000.00 |
+| KING  | 5500.00 |      66000.00 |
+| FORD  | 3500.00 |      42000.00 |
++-------+---------+---------------+
+6 rows in set (0.0011 sec)
+
+5) MySQL  localhost:33060+ ssl  bobby  SQL > select ename, job, salary + ifnull(commission, 0) as net_income from emp;
++--------+-----------+------------+
+| ename  | job       | net_income |
++--------+-----------+------------+
+| SMITH  | CLERK     |    1400.00 |
+| ALLEN  | SALESMAN  |    2400.00 |
+| WARD   | SALESMAN  |    2250.00 |
+| JONES  | MANAGER   |    3475.00 |
+| BLAKE  | MANAGER   |    3350.00 |
+| CLARK  | MANAGER   |    2950.00 |
+| SCOTT  | ANALYST   |    3500.00 |
+| KING   | PRESIDENT |    5500.00 |
+| TURNER | SALESMAN  |    2000.00 |
+| ADAMS  | CLERK     |    1600.00 |
+| JAMES  | CLERK     |    1450.00 |
+| FORD   | ANALYST   |    3500.00 |
+| MILLER | CLERK     |    1800.00 |
++--------+-----------+------------+
+13 rows in set (0.0010 sec)
+
+6) MySQL  localhost:33060+ ssl  bobby  SQL > select ename , salary from emp where salary = 3000;
+Empty set (0.0009 sec)
+
+7) MySQL  localhost:33060+ ssl  bobby  SQL > select ename , salary from emp where salary > 2500;
++-------+---------+
+| ename | salary  |
++-------+---------+
+| JONES | 3475.00 |
+| BLAKE | 3350.00 |
+| CLARK | 2950.00 |
+| SCOTT | 3500.00 |
+| KING  | 5500.00 |
+| FORD  | 3500.00 |
++-------+---------+
+6 rows in set (0.0012 sec)
+
+8) MySQL  localhost:33060+ ssl  bobby  SQL > select ename , salary from emp where salary between 1000 and  2000;
++--------+---------+
+| ename  | salary  |
++--------+---------+
+| SMITH  | 1300.00 |
+| WARD   | 1750.00 |
+| TURNER | 2000.00 |
+| ADAMS  | 1600.00 |
+| JAMES  | 1450.00 |
+| MILLER | 1800.00 |
++--------+---------+
+6 rows in set (0.0009 sec)
+
+9) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,job,salary from emp where job='MANAGER';
++-------+---------+---------+
+| ename | job     | salary  |
++-------+---------+---------+
+| JONES | MANAGER | 3475.00 |
+| BLAKE | MANAGER | 3350.00 |
+| CLARK | MANAGER | 2950.00 |
++-------+---------+---------+
+3 rows in set (0.0009 sec)
+
+10) MySQL  localhost:33060+ ssl  bobby  SQL > select ename ,hiredate from emp where hiredate > '1981-01-01';
++--------+------------+
+| ename  | hiredate   |
++--------+------------+
+| ALLEN  | 1981-02-20 |
+| WARD   | 1981-02-22 |
+| JONES  | 1981-04-02 |
+| BLAKE  | 1981-05-01 |
+| CLARK  | 1981-06-09 |
+| SCOTT  | 1982-12-09 |
+| KING   | 1981-11-17 |
+| TURNER | 1981-09-08 |
+| ADAMS  | 1983-01-12 |
+| JAMES  | 1981-12-03 |
+| FORD   | 1981-12-03 |
+| MILLER | 1982-01-23 |
++--------+------------+
+12 rows in set (0.0099 sec)
+
+11) MySQL  localhost:33060+ ssl  bobby  SQL > select ename ,job,salary from emp where
+                                        -> job ='CLERK' and salary < 1500;
++-------+-------+---------+
+| ename | job   | salary  |
++-------+-------+---------+
+| SMITH | CLERK | 1300.00 |
+| JAMES | CLERK | 1450.00 |
++-------+-------+---------+
+2 rows in set (0.0010 sec)
+
+12) MySQL localhost:33060+ ssl  bobby  SQL > select ename , job from emp
+                                        -> where job='SALESMAN' or job='CLERK';
++--------+----------+
+| ename  | job      |
++--------+----------+
+| SMITH  | CLERK    |
+| ALLEN  | SALESMAN |
+| WARD   | SALESMAN |
+| TURNER | SALESMAN |
+| ADAMS  | CLERK    |
+| JAMES  | CLERK    |
+| MILLER | CLERK    |
++--------+----------+
+7 rows in set (0.0015 sec)
+
+13) MySQL localhost:33060+ ssl  bobby  SQL > select * from emp where salary between 1000 and 2000 and depno = 30;
++-------+--------+----------+------+------------+---------+------------+-------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+----------+------+------------+---------+------------+-------+
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
++-------+--------+----------+------+------------+---------+------------+-------+
+3 rows in set (0.0010 sec)
+
+14) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where not job= 'MANAGER';
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+10 rows in set (0.0011 sec)
+
+15) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where commission is null or commission =0;
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+10 rows in set (0.0013 sec)
+
+16) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where hiredate between '1981-01-01' and '1981-12-31';
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+9 rows in set (0.0010 sec)
+
+17) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where depno in(10,20,30);
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+13 rows in set (0.0012 sec)
+
+18) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like 's%';
++-------+-------+---------+------+------------+---------+------------+-------+
+| empno | ename | job     | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+---------+------+------------+---------+------------+-------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
++-------+-------+---------+------+------------+---------+------------+-------+
+2 rows in set (0.0011 sec)
+
+19) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like '%n';
++-------+-------+----------+------+------------+---------+------------+-------+
+| empno | ename | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
++-------+-------+----------+------+------------+---------+------------+-------+
+1 row in set (0.0009 sec)
+
+20) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like '%a%';
+
++-------+-------+----------+------+------------+---------+------------+-------+
+| empno | ename | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7698 | BLAKE | MANAGER  | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK | MANAGER  | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7876 | ADAMS | CLERK    | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES | CLERK    | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
++-------+-------+----------+------+------------+---------+------------+-------+
+6 rows in set (0.0010 sec)
+
+21) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where mgr is null;
++-------+-------+-----------+------+------------+---------+------------+-------+
+| empno | ename | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+-----------+------+------------+---------+------------+-------+
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
++-------+-------+-----------+------+------------+---------+------------+-------+
+1 row in set (0.0009 sec)
+
+22) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where commission is null or commission =0;
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+10 rows in set (0.0008 sec)
+
+23) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where commission is not null ;
++-------+--------+----------+------+------------+---------+------------+-------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+----------+------+------------+---------+------------+-------+
+|  7369 | SMITH  | CLERK    | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
++-------+--------+----------+------+------------+---------+------------+-------+
+4 rows in set (0.0010 sec)
+
+24) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where salary is null;
+Empty set (0.0009 sec)
+
+ MySQL  localhost:33060+ ssl  bobby  SQL > select * from department;
++-------+------------+----------+
+| depno | dname      | loca     |
++-------+------------+----------+
+|    10 | accounting | new york |
+|    20 | research   | dallas   |
+|    30 | developer  | chicago  |
+|    40 | operations | bostan   |
++-------+------------+----------+
+4 rows in set (0.0137 sec)
+
+25) MySQL  localhost:33060+ ssl  bobby  SQL > select * from department where loca is null;
+Empty set (0.0007 sec)
+
+26) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where job like 'm%';
++-------+-------+---------+------+------------+---------+------------+-------+
+| empno | ename | job     | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+---------+------+------------+---------+------------+-------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK | MANAGER | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
++-------+-------+---------+------+------------+---------+------------+-------+
+3 rows in set (0.0012 sec)
+
+27) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where length(ename)=5;
++-------+-------+----------+------+------------+---------+------------+-------+
+| empno | ename | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+----------+------+------------+---------+------------+-------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7566 | JONES | MANAGER  | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE | MANAGER  | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK | MANAGER  | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT | ANALYST  | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7876 | ADAMS | CLERK    | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES | CLERK    | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
++-------+-------+----------+------+------------+---------+------------+-------+
+8 rows in set (0.0011 sec)
+
+28) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where job like '%man';
++-------+--------+----------+------+------------+---------+------------+-------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
++-------+--------+----------+------+------------+---------+------------+-------+
+3 rows in set (0.0009 sec)
+
+29) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like '%s';
++-------+-------+---------+------+------------+---------+------------+-------+
+| empno | ename | job     | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+---------+------+------------+---------+------------+-------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7876 | ADAMS | CLERK   | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |
++-------+-------+---------+------+------------+---------+------------+-------+
+3 rows in set (0.0009 sec)
+
+30) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like '%aa%';
+Empty set (0.0009 sec)
+
+31) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where ename like 's%h';
+
++-------+-------+-------+------+------------+---------+------------+-------+
+| empno | ename | job   | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+-------+------+------------+---------+------------+-------+
+|  7369 | SMITH | CLERK | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
++-------+-------+-------+------+------------+---------+------------+-------+
+1 row in set (0.0016 sec)
+
+32) MySQL  localhost:33060+ ssl  bobby  SQL > select *,salary * 0.15 as bonus from emp;
+
++-------+--------+-----------+------+------------+---------+------------+-------+----------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno | bonus    |
++-------+--------+-----------+------+------------+---------+------------+-------+----------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 | 195.0000 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 | 315.0000 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 | 262.5000 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 | 521.2500 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 | 502.5000 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 | 442.5000 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 | 525.0000 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 | 825.0000 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 | 300.0000 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 | 240.0000 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 | 217.5000 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 | 525.0000 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 | 270.0000 |
++-------+--------+-----------+------+------------+---------+------------+-------+----------+
+13 rows in set (0.0104 sec)
+
+33) MySQL  localhost:33060+ ssl  bobby  SQL > select * ,salary *83 as salary_inr from emp;
++-------+--------+-----------+------+------------+---------+------------+-------+------------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno | salary_inr |
++-------+--------+-----------+------+------------+---------+------------+-------+------------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |  107900.00 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |  174300.00 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |  145250.00 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |  288425.00 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |  278050.00 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |  244850.00 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |  290500.00 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |  456500.00 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |  166000.00 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |  132800.00 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 | 1450.00 |       NULL |    30 |  120350.00 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |  290500.00 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |  149400.00 |
++-------+--------+-----------+------+------------+---------+------------+-------+------------+
+13 rows in set (0.0012 sec)
+
+34)MySQL  localhost:33060+ ssl  bobby  SQL > select * ,(commission/salary) as commission_ratio from emp where job ='salesman' and commission is not null and salary >0;
++-------+--------+----------+------+------------+---------+------------+-------+------------------+
+| empno | ename  | job      | mgr  | hiredate   | salary  | commission | depno | commission_ratio |
++-------+--------+----------+------+------------+---------+------------+-------+------------------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |         0.142857 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |         0.285714 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |         0.000000 |
++-------+--------+----------+------+------------+---------+------------+-------+------------------+
+3 rows in set (0.0014 sec)
+
+35) MySQL  localhost:33060+ ssl  bobby  SQL > select ename,salary as monthly_sal,salary* 12 as yearly_salary from emp;
++--------+-------------+---------------+
+| ename  | monthly_sal | yearly_salary |
++--------+-------------+---------------+
+| SMITH  |     1300.00 |      15600.00 |
+| ALLEN  |     2100.00 |      25200.00 |
+| WARD   |     1750.00 |      21000.00 |
+| JONES  |     3475.00 |      41700.00 |
+| BLAKE  |     3350.00 |      40200.00 |
+| CLARK  |     2950.00 |      35400.00 |
+| SCOTT  |     3500.00 |      42000.00 |
+| KING   |     5500.00 |      66000.00 |
+| TURNER |     2000.00 |      24000.00 |
+| ADAMS  |     1600.00 |      19200.00 |
+| JAMES  |     1450.00 |      17400.00 |
+| FORD   |     3500.00 |      42000.00 |
+| MILLER |     1800.00 |      21600.00 |
++--------+-------------+---------------+
+13 rows in set (0.0011 sec)
+
+36) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where salary >1500 and year(hiredate) =1981;
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 2000.00 |       0.00 |    30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+8 rows in set (0.0116 sec)
+
+37) MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where not job = 'clerk' and salary >2000;
++-------+-------+-----------+------+------------+---------+------------+-------+
+| empno | ename | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+-----------+------+------------+---------+------------+-------+
+|  7499 | ALLEN | SALESMAN  | 7698 | 1981-02-20 | 2100.00 |     300.00 |    30 |
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 3350.00 |       NULL |    30 |
+|  7782 | CLARK | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
++-------+-------+-----------+------+------------+---------+------------+-------+
+7 rows in set (0.0010 sec)
+
+38)MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where commission is not null and commission >0 and salary <2000;
++-------+-------+----------+------+------------+---------+------------+-------+
+| empno | ename | job      | mgr  | hiredate   | salary  | commission | depno |
++-------+-------+----------+------+------------+---------+------------+-------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1750.00 |     500.00 |    30 |
++-------+-------+----------+------+------------+---------+------------+-------+
+2 rows in set (0.0010 sec)
+
+39)MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where hiredate > '1981-12-31';
++-------+--------+---------+------+------------+---------+------------+-------+
+| empno | ename  | job     | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+---------+------+------------+---------+------------+-------+
+|  7788 | SCOTT  | ANALYST | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7876 | ADAMS  | CLERK   | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7934 | MILLER | CLERK   | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
++-------+--------+---------+------+------------+---------+------------+-------+
+3 rows in set (0.0103 sec)
+
+40)MySQL  localhost:33060+ ssl  bobby  SQL > select * from emp where depno in(10,20);
++-------+--------+-----------+------+------------+---------+------------+-------+
+| empno | ename  | job       | mgr  | hiredate   | salary  | commission | depno |
++-------+--------+-----------+------+------------+---------+------------+-------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2950.00 |       NULL |    10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5500.00 |       NULL |    10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1800.00 |       NULL |    10 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |     100.00 |    20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 3475.00 |       NULL |    20 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3500.00 |       NULL |    20 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1600.00 |       NULL |    20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3500.00 |       NULL |    20 |
++-------+--------+-----------+------+------------+---------+------------+-------+
+8 rows in set (0.0095 sec)
+
