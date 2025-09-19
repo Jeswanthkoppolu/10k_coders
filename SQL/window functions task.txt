@@ -1,0 +1,219 @@
+1) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, salary, RANK() OVER (ORDER BY salary DESC) AS salary_rank FROM emp;
++--------+---------+-------------+
+| ename  | salary  | salary_rank |
++--------+---------+-------------+
+| KING   | 5500.00 |           1 |
+| BOBBY  | 4000.00 |           2 |
+| SCOTT  | 3500.00 |           3 |
+| FORD   | 3500.00 |           3 |
+| JONES  | 3475.00 |           5 |
+| BLAKE  | 3350.00 |           6 |
+| CLARK  | 2950.00 |           7 |
+| ALLEN  | 2100.00 |           8 |
+| TURNER | 2000.00 |           9 |
+| MILLER | 1800.00 |          10 |
+| WARD   | 1750.00 |          11 |
+| RAHUL  | 1700.00 |          12 |
+| ADAMS  | 1600.00 |          13 |
+| JAMES  | 1450.00 |          14 |
+| SMITH  | 1300.00 |          15 |
++--------+---------+-------------+
+15 rows in set (0.0116 sec)
+
+2)  MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, depno, salary, DENSE_RANK() OVER (PARTITION BY depno ORDER BY salary DESC) AS dept_salary_rank FROM emp;
++--------+-------+---------+------------------+
+| ename  | depno | salary  | dept_salary_rank |
++--------+-------+---------+------------------+
+| KING   |    10 | 5500.00 |                1 |
+| CLARK  |    10 | 2950.00 |                2 |
+| MILLER |    10 | 1800.00 |                3 |
+| BOBBY  |    20 | 4000.00 |                1 |
+| SCOTT  |    20 | 3500.00 |                2 |
+| FORD   |    20 | 3500.00 |                2 |
+| JONES  |    20 | 3475.00 |                3 |
+| RAHUL  |    20 | 1700.00 |                4 |
+| ADAMS  |    20 | 1600.00 |                5 |
+| SMITH  |    20 | 1300.00 |                6 |
+| BLAKE  |    30 | 3350.00 |                1 |
+| ALLEN  |    30 | 2100.00 |                2 |
+| TURNER |    30 | 2000.00 |                3 |
+| WARD   |    30 | 1750.00 |                4 |
+| JAMES  |    30 | 1450.00 |                5 |
++--------+-------+---------+------------------+
+
+3) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, depno, salary, AVG(salary) OVER (PARTITION BY depno) AS avg_dept_salary FROM emp;
++--------+-------+---------+-----------------+
+| ename  | depno | salary  | avg_dept_salary |
++--------+-------+---------+-----------------+
+| CLARK  |    10 | 2950.00 |     3416.666667 |
+| KING   |    10 | 5500.00 |     3416.666667 |
+| MILLER |    10 | 1800.00 |     3416.666667 |
+| SMITH  |    20 | 1300.00 |     2725.000000 |
+| BOBBY  |    20 | 4000.00 |     2725.000000 |
+| JONES  |    20 | 3475.00 |     2725.000000 |
+| SCOTT  |    20 | 3500.00 |     2725.000000 |
+| ADAMS  |    20 | 1600.00 |     2725.000000 |
+| FORD   |    20 | 3500.00 |     2725.000000 |
+| RAHUL  |    20 | 1700.00 |     2725.000000 |
+| ALLEN  |    30 | 2100.00 |     2130.000000 |
+| WARD   |    30 | 1750.00 |     2130.000000 |
+| BLAKE  |    30 | 3350.00 |     2130.000000 |
+| TURNER |    30 | 2000.00 |     2130.000000 |
+| JAMES  |    30 | 1450.00 |     2130.000000 |
++--------+-------+---------+-----------------+
+15 rows in set (0.0015 sec)
+
+4) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, depno,salary, MAX(salary) OVER (PARTITION BY depno) AS max_dept_salary FROM emp;
++--------+-------+---------+-----------------+
+| ename  | depno | salary  | max_dept_salary |
++--------+-------+---------+-----------------+
+| CLARK  |    10 | 2950.00 |         5500.00 |
+| KING   |    10 | 5500.00 |         5500.00 |
+| MILLER |    10 | 1800.00 |         5500.00 |
+| SMITH  |    20 | 1300.00 |         4000.00 |
+| BOBBY  |    20 | 4000.00 |         4000.00 |
+| JONES  |    20 | 3475.00 |         4000.00 |
+| SCOTT  |    20 | 3500.00 |         4000.00 |
+| ADAMS  |    20 | 1600.00 |         4000.00 |
+| FORD   |    20 | 3500.00 |         4000.00 |
+| RAHUL  |    20 | 1700.00 |         4000.00 |
+| ALLEN  |    30 | 2100.00 |         3350.00 |
+| WARD   |    30 | 1750.00 |         3350.00 |
+| BLAKE  |    30 | 3350.00 |         3350.00 |
+| TURNER |    30 | 2000.00 |         3350.00 |
+| JAMES  |    30 | 1450.00 |         3350.00 |
++--------+-------+---------+-----------------+
+15 rows in set (0.0013 sec)
+
+
+5) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename,salary, SUM(salary) OVER (ORDER BY salary) AS running_total_salary FROM emp;
++--------+---------+----------------------+
+| ename  | salary  | running_total_salary |
++--------+---------+----------------------+
+| SMITH  | 1300.00 |              1300.00 |
+| JAMES  | 1450.00 |              2750.00 |
+| ADAMS  | 1600.00 |              4350.00 |
+| RAHUL  | 1700.00 |              6050.00 |
+| WARD   | 1750.00 |              7800.00 |
+| MILLER | 1800.00 |              9600.00 |
+| TURNER | 2000.00 |             11600.00 |
+| ALLEN  | 2100.00 |             13700.00 |
+| CLARK  | 2950.00 |             16650.00 |
+| BLAKE  | 3350.00 |             20000.00 |
+| JONES  | 3475.00 |             23475.00 |
+| SCOTT  | 3500.00 |             30475.00 |
+| FORD   | 3500.00 |             30475.00 |
+| BOBBY  | 4000.00 |             34475.00 |
+| KING   | 5500.00 |             39975.00 |
++--------+---------+----------------------+
+15 rows in set (0.0012 sec)
+
+
+6) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, depno, salary, salary - AVG(salary) OVER (PARTITION BY depno) AS diff_from_dept_avg FROM emp;
++--------+-------+---------+--------------------+
+| ename  | depno | salary  | diff_from_dept_avg |
++--------+-------+---------+--------------------+
+| CLARK  |    10 | 2950.00 |        -466.666667 |
+| KING   |    10 | 5500.00 |        2083.333333 |
+| MILLER |    10 | 1800.00 |       -1616.666667 |
+| SMITH  |    20 | 1300.00 |       -1425.000000 |
+| BOBBY  |    20 | 4000.00 |        1275.000000 |
+| JONES  |    20 | 3475.00 |         750.000000 |
+| SCOTT  |    20 | 3500.00 |         775.000000 |
+| ADAMS  |    20 | 1600.00 |       -1125.000000 |
+| FORD   |    20 | 3500.00 |         775.000000 |
+| RAHUL  |    20 | 1700.00 |       -1025.000000 |
+| ALLEN  |    30 | 2100.00 |         -30.000000 |
+| WARD   |    30 | 1750.00 |        -380.000000 |
+| BLAKE  |    30 | 3350.00 |        1220.000000 |
+| TURNER |    30 | 2000.00 |        -130.000000 |
+| JAMES  |    30 | 1450.00 |        -680.000000 |
++--------+-------+---------+------------
+
+
+7) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, depno, salary, MIN(salary) OVER (PARTITION BY depno) AS min_dept_salary,   MAX(salary) OVER (PARTITION BY depno) AS max_dept_salary FROM emp;
++--------+-------+---------+-----------------+-----------------+
+| ename  | depno | salary  | min_dept_salary | max_dept_salary |
++--------+-------+---------+-----------------+-----------------+
+| CLARK  |    10 | 2950.00 |         1800.00 |         5500.00 |
+| KING   |    10 | 5500.00 |         1800.00 |         5500.00 |
+| MILLER |    10 | 1800.00 |         1800.00 |         5500.00 |
+| SMITH  |    20 | 1300.00 |         1300.00 |         4000.00 |
+| BOBBY  |    20 | 4000.00 |         1300.00 |         4000.00 |
+| JONES  |    20 | 3475.00 |         1300.00 |         4000.00 |
+| SCOTT  |    20 | 3500.00 |         1300.00 |         4000.00 |
+| ADAMS  |    20 | 1600.00 |         1300.00 |         4000.00 |
+| FORD   |    20 | 3500.00 |         1300.00 |         4000.00 |
+| RAHUL  |    20 | 1700.00 |         1300.00 |         4000.00 |
+| ALLEN  |    30 | 2100.00 |         1450.00 |         3350.00 |
+| WARD   |    30 | 1750.00 |         1450.00 |         3350.00 |
+| BLAKE  |    30 | 3350.00 |         1450.00 |         3350.00 |
+| TURNER |    30 | 2000.00 |         1450.00 |         3350.00 |
+| JAMES  |    30 | 1450.00 |         1450.00 |         3350.00 |
++--------+-------+---------+-----------------+-----------------+
+15 rows in set (0.0015 sec)
+
+
+8)MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, hiredate, salary, ROW_NUMBER() OVER (ORDER BY hiredate) AS hire_row_number FROM emp;
++--------+------------+---------+-----------------+
+| ename  | hiredate   | salary  | hire_row_number |
++--------+------------+---------+-----------------+
+| SMITH  | 1980-12-17 | 1300.00 |               1 |
+| ALLEN  | 1981-02-20 | 2100.00 |               2 |
+| WARD   | 1981-02-22 | 1750.00 |               3 |
+| JONES  | 1981-04-02 | 3475.00 |               4 |
+| BLAKE  | 1981-05-01 | 3350.00 |               5 |
+| CLARK  | 1981-06-09 | 2950.00 |               6 |
+| TURNER | 1981-09-08 | 2000.00 |               7 |
+| KING   | 1981-11-17 | 5500.00 |               8 |
+| JAMES  | 1981-12-03 | 1450.00 |               9 |
+| FORD   | 1981-12-03 | 3500.00 |              10 |
+| MILLER | 1982-01-23 | 1800.00 |              11 |
+| SCOTT  | 1982-12-09 | 3500.00 |              12 |
+| ADAMS  | 1983-01-12 | 1600.00 |              13 |
+| BOBBY  | 2003-05-20 | 4000.00 |              14 |
+| RAHUL  | 2025-09-03 | 1700.00 |              15 |
++--------+------------+---------+-----------------+
+15 rows in set (0.0012 sec)
+
+
+9) using rank()
+MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, salary FROM (   SELECT ename, salary, RANK() OVER (ORDER BY salary DESC) AS rnk   FROM emp ) AS ranked WHERE rnk = 2;
++-------+---------+
+| ename | salary  |
++-------+---------+
+| BOBBY | 4000.00 |
++-------+---------+
+1 row in set (0.0012 sec)
+
+using row_number()
+ MySQL  localhost:33060+ ssl  bobby  SQL > SELECT ename, salary FROM (   SELECT ename, salary, ROW_NUMBER() OVER (ORDER BY salary DESC) AS rn   FROM emp ) AS ordered WHERE rn = 2;
++-------+---------+
+| ename | salary  |
++-------+---------+
+| BOBBY | 4000.00 |
++-------+---------+
+1 row in set (0.0011 sec)
+
+
+10) MySQL  localhost:33060+ ssl  bobby  SQL > SELECT    ename,    depno,    salary,   PERCENT_RANK() OVER (PARTITION BY depno ORDER BY salary) AS percent_rank_within_dept FROM emp;
++--------+-------+---------+--------------------------+
+| ename  | depno | salary  | percent_rank_within_dept |
++--------+-------+---------+--------------------------+
+| MILLER |    10 | 1800.00 |                        0 |
+| CLARK  |    10 | 2950.00 |                      0.5 |
+| KING   |    10 | 5500.00 |                        1 |
+| SMITH  |    20 | 1300.00 |                        0 |
+| ADAMS  |    20 | 1600.00 |      0.16666666666666666 |
+| RAHUL  |    20 | 1700.00 |       0.3333333333333333 |
+| JONES  |    20 | 3475.00 |                      0.5 |
+| SCOTT  |    20 | 3500.00 |       0.6666666666666666 |
+| FORD   |    20 | 3500.00 |       0.6666666666666666 |
+| BOBBY  |    20 | 4000.00 |                        1 |
+| JAMES  |    30 | 1450.00 |                        0 |
+| WARD   |    30 | 1750.00 |                     0.25 |
+| TURNER |    30 | 2000.00 |                      0.5 |
+| ALLEN  |    30 | 2100.00 |                     0.75 |
+| BLAKE  |    30 | 3350.00 |                        1 |
++--------+-------+---------+--------------------------+
+15 rows in set (0.0013 sec)
